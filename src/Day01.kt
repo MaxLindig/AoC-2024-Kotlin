@@ -68,7 +68,24 @@ fun main() {
    * it by the number of times that number appears in the right list.
    */
   fun part2(input: List<String>): Int {
-    return input.size
+    val leftList = getLeftList(input)
+    val rightList = getRightList(input)
+
+    var similarityScore = 0
+    var occurrence = 0
+
+    for (i in input.indices) {
+      for (n in input.indices) {
+        if (leftList[i] == rightList[n]) {
+          occurrence += 1
+        }
+      }
+      val value = leftList[i] * occurrence
+      occurrence = 0
+      similarityScore += value
+    }
+
+    return similarityScore
   }
 
   // Read the input from the `src/Day01.txt` file.
